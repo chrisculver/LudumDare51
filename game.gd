@@ -1,16 +1,17 @@
 extends Node3D
 
-var playTime = 0
+var debugOverlay = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var overlay = load("res://debug_layer.tscn").instantiate()	
+	add_child(overlay)
+	debugOverlay = overlay
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	playTime += delta
-	$UILayer/Timer/Clock.text = ("elapsed: %02d" % playTime) + "s"
+	pass
 
 
 func _input(event):

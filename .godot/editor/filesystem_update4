@@ -4,3 +4,5 @@ res://game.tscn
 res://UI/pause_menu.tscn
 res://game.gd
 res://UI/pause_menu.gd
+res://debug_layer.gd
+res://debug_layer.tscn

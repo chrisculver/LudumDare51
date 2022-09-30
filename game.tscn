@@ -27,17 +27,6 @@ script = ExtResource("1_mnrhq")
 process_mode = 2
 visible = false
 
-[node name="Timer" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Clock" type="Label" parent="UILayer/Timer"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="MeshInstance3d" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_8m1rp")
 
