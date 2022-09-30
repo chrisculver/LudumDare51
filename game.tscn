@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cby8svsnc3rie"]
+[gd_scene load_steps=7 format=3 uid="uid://cby8svsnc3rie"]
 
 [ext_resource type="PackedScene" uid="uid://caie2p5bvk4aa" path="res://UI/pause_menu.tscn" id="1_g8c7x"]
 [ext_resource type="Script" path="res://game.gd" id="1_mnrhq"]
-[ext_resource type="Script" path="res://UI/pause_menu.gd" id="3_xhtg0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8m1rp"]
 
@@ -25,9 +24,19 @@ script = ExtResource("1_mnrhq")
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="UILayer" instance=ExtResource("1_g8c7x")]
-process_mode = 3
+process_mode = 2
 visible = false
-script = ExtResource("3_xhtg0")
+
+[node name="Timer" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Clock" type="Label" parent="UILayer/Timer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_8m1rp")
@@ -41,3 +50,5 @@ environment = SubResource("Environment_4cch6")
 
 [node name="Camera3d" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.929776, 0.368125, 0, -0.368125, 0.929776, 0, 1.01772, 2.53941)
+
+[node name="Timer" type="Timer" parent="."]

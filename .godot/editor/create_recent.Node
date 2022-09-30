@@ -1,3 +1,7 @@
+Timer
+Label
+PanelContainer
+Control
 PopupPanel
 MarginContainer
 Panel
@@ -5,6 +9,4 @@ Button
 VBoxContainer
 Camera3D
 MeshInstance3D
-Control
 CanvasLayer
-Label
