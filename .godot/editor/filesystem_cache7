@@ -1,0 +1,9 @@
+0b7126e0c6e86d3ec295a72f5aa6e0bd
+::res://::1664555588
+export_presets.cfg::TextFile::-1::1664554632::0::1::::<><>::
+game.tscn::PackedScene::4894612213564536696::1664555578::0::1::::<><>::
+icon.svg::CompressedTexture2D::1180662345565684895::1664554566::1664554572::1::::<><>::
+main_menu.gd::GDScript::-1::1664555467::0::1::::<>Control<>::
+main_menu.tscn::PackedScene::7669456107742172401::1664555472::0::1::::<><>::res://main_menu.gd
+pause_menu.tscn::PackedScene::4789648308093488052::1664555583::0::1::::<><>::
+::res://UI/::1664555588
