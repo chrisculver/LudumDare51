@@ -1,7 +1,7 @@
 extends TileMap
 
-@export var objectCut = 0.05
-@export var objectProb = 0.05
+@export var objectCut = 0.1 # [0.1 -> 0.2 people] # [0.2->0.3 minerals]
+@export var objectProb = 0.1
 @export var chunkSize: int = 8
 
 @onready var noise = FastNoiseLite.new()

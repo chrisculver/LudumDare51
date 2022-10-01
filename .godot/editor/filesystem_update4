@@ -1,13 +1,10 @@
+res://cow.tscn
 res://main_menu.tscn
 res://game.tscn
 res://UI/pause_menu.tscn
 res://debug_layer.tscn
 res://player.tscn
-res://cow.tscn
 res://UI/ui.tscn
-res://camera_2d.gd
-res://player.gd
-res://game.gd
 res://cow.gd
-res://TileMap.gd
-res://MapGenerator.gd
+res://game.gd
+res://player.gd

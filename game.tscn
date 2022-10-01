@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cby8svsnc3rie"]
+[gd_scene load_steps=12 format=3 uid="uid://cby8svsnc3rie"]
 
 [ext_resource type="PackedScene" uid="uid://caie2p5bvk4aa" path="res://UI/pause_menu.tscn" id="1_g8c7x"]
 [ext_resource type="Script" path="res://game.gd" id="1_mnrhq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://TileMap.gd" id="5_1222k"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="7_o4jie"]
 [ext_resource type="Script" path="res://MapGenerator.gd" id="9_qe2un"]
+[ext_resource type="AudioStream" uid="uid://guc75hrdn4av" path="res://Assets/basicDrums.wav" id="9_v4a8y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_82p5h"]
 resource_name = "Grass"
@@ -50,6 +51,11 @@ script = ExtResource("9_qe2un")
 tileMapPath = NodePath("../TileMap")
 playerPath = NodePath("../Player")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_v4a8y")
+autoplay = true
+
 [connection signal="spawn_object" from="TileMap" to="." method="_on_tile_map_spawn_object"]
 [connection signal="abducting_area" from="Player" to="." method="_on_player_abducting_area"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

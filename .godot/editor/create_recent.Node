@@ -1,3 +1,7 @@
+AudioStreamPlayer
+HBoxContainer
+TextureRect
+VBoxContainer
 Node2D
 AnimationPlayer
 Camera2D
@@ -15,7 +19,6 @@ PopupPanel
 MarginContainer
 Panel
 Button
-VBoxContainer
 Camera3D
 MeshInstance3D
 CanvasLayer

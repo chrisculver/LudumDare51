@@ -50,3 +50,7 @@ func _on_tile_map_spawn_object(pos):
 	cow.position = pos
 	add_child(cow)
 	
+
+
+func _on_audio_stream_player_finished():
+	$AudioStreamPlayer.play()

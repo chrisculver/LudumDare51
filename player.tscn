@@ -49,4 +49,6 @@ position = Vector2(2.98023e-08, 4.54235)
 scale = Vector2(1, 0.505464)
 shape = SubResource("RectangleShape2D_tc7lv")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="area_entered" from="BeamArea" to="." method="_on_beam_area_area_entered"]

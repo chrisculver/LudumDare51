@@ -14,7 +14,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var direction = get_global_mouse_position() - position
-	if abs(direction.x)<1 and abs(direction.y)<1:
+	print(direction)
+	if abs(direction.x)<1 or abs(direction.y)<1:
 		direction = Vector2(0,0)
 
 	direction = direction.normalized()
