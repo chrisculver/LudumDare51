@@ -1,8 +1,16 @@
 extends Sprite2D
 
 @export var SPEED: float = 250.0
+@export var SIZE: float = 1.0:
+	get:
+		return SIZE
+	set(newSize):
+		SIZE=newSize
+		scale=scale*SIZE
+		$GpuParticles2d.get_process_material().scale_max=scale.x
+		$GpuParticles2d.get_process_material().scale_min=scale.x
 
-var isBeamOn: bool = false
+var isBeamOn: bool = true
 
 signal abducting_area(area)
 
@@ -14,7 +22,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var direction = get_global_mouse_position() - position
-	print(direction)
+
 	if abs(direction.x)<1 or abs(direction.y)<1:
 		direction = Vector2(0,0)
 

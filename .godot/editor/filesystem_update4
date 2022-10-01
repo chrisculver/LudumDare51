@@ -8,3 +8,6 @@ res://UI/ui.tscn
 res://cow.gd
 res://game.gd
 res://player.gd
+res://TileMap.gd
+res://UI/upgrade_menu.tscn
+res://UI/upgrade_menu.gd

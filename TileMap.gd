@@ -19,7 +19,6 @@ func make_chunk(position):
 		for y in range(yStart-chunkSize, yStart+chunkSize):
 			if get_cell_source_id(0, Vector2i(x,y)) != -1:
 				continue
-				
 			else:
 				set_cell(0,Vector2i(x,y),0,Vector2i(0,0))
 				var n = noise.get_noise_2d(x,y)

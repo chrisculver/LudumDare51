@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cby8svsnc3rie"]
+[gd_scene load_steps=13 format=3 uid="uid://cby8svsnc3rie"]
 
 [ext_resource type="PackedScene" uid="uid://caie2p5bvk4aa" path="res://UI/pause_menu.tscn" id="1_g8c7x"]
 [ext_resource type="Script" path="res://game.gd" id="1_mnrhq"]
 [ext_resource type="PackedScene" uid="uid://d1ocbhsvcgll4" path="res://player.tscn" id="3_5m276"]
 [ext_resource type="Texture2D" uid="uid://dnmkv8efu4rkb" path="res://Assets/grass.png" id="3_leim7"]
 [ext_resource type="PackedScene" uid="uid://b6rnmh4388kyd" path="res://UI/ui.tscn" id="3_q5cl8"]
+[ext_resource type="PackedScene" uid="uid://gnmcx4u0nu0q" path="res://UI/upgrade_menu.tscn" id="4_klax7"]
 [ext_resource type="Script" path="res://TileMap.gd" id="5_1222k"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="7_o4jie"]
 [ext_resource type="Script" path="res://MapGenerator.gd" id="9_qe2un"]
@@ -31,19 +32,26 @@ visible = false
 
 [node name="UI" parent="UILayer" instance=ExtResource("3_q5cl8")]
 
+[node name="UpgradeMenu" parent="UILayer" instance=ExtResource("4_klax7")]
+visible = false
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_etf0v")
 format = 2
 script = ExtResource("5_1222k")
 
 [node name="Player" parent="." instance=ExtResource("3_5m276")]
+scale = Vector2(1, 1)
+z_index = 99
+SPEED = 50.0
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
+zoom = Vector2(4, 4)
 script = ExtResource("7_o4jie")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
 
 [node name="MapGenerator" type="Node2D" parent="."]
@@ -55,6 +63,8 @@ playerPath = NodePath("../Player")
 stream = ExtResource("9_v4a8y")
 autoplay = true
 
+[connection signal="upgrade_scale" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_scale"]
+[connection signal="upgrade_speed" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_speed"]
 [connection signal="spawn_object" from="TileMap" to="." method="_on_tile_map_spawn_object"]
 [connection signal="abducting_area" from="Player" to="." method="_on_player_abducting_area"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

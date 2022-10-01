@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ocbhsvcgll4"]
+[gd_scene load_steps=9 format=3 uid="uid://d1ocbhsvcgll4"]
 
 [ext_resource type="Texture2D" uid="uid://cfrort1wmt7d8" path="res://Assets/spaceship.png" id="1_fbjcm"]
 [ext_resource type="Script" path="res://player.gd" id="2_d2ipd"]
@@ -24,17 +24,23 @@ linear_accel_max = 1.0
 color = Color(0.686275, 0.188235, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7lv"]
-size = Vector2(20, 17.1622)
+size = Vector2(20, 2.43244)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cebv"]
+albedo_color = Color(0.407843, 0.407843, 0.407843, 0.52549)
+
+[sub_resource type="SphereMesh" id="SphereMesh_henp2"]
+material = SubResource("StandardMaterial3D_7cebv")
+radius = 10.0
+height = 10.0
 
 [node name="Player" type="Sprite2D"]
-scale = Vector2(2, 2)
 texture = ExtResource("1_fbjcm")
 script = ExtResource("2_d2ipd")
 
 [node name="GpuParticles2d" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_o6d28")
 position = Vector2(0, 4.5)
-emitting = false
 amount = 5
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_r4qke")
@@ -42,13 +48,16 @@ texture = ExtResource("3_dsb31")
 
 [node name="BeamArea" type="Area2D" parent="."]
 scale = Vector2(1, 7.32)
-monitoring = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="BeamArea"]
-position = Vector2(2.98023e-08, 4.54235)
+position = Vector2(2.98023e-08, 8.81147)
 scale = Vector2(1, 0.505464)
 shape = SubResource("RectangleShape2D_tc7lv")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MeshInstance2d" type="MeshInstance2D" parent="."]
+position = Vector2(0, 64.5)
+mesh = SubResource("SphereMesh_henp2")
 
 [connection signal="area_entered" from="BeamArea" to="." method="_on_beam_area_area_entered"]
