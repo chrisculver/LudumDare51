@@ -13,13 +13,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var direction = get_viewport().get_mouse_position() - position
+	var direction = get_global_mouse_position() - position
 	if abs(direction.x)<1 and abs(direction.y)<1:
 		direction = Vector2(0,0)
 
 	direction = direction.normalized()
 	position += direction*SPEED*delta
-	
+
 
 
 func turn_on_beam():

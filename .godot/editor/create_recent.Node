@@ -1,3 +1,6 @@
+Node2D
+AnimationPlayer
+Camera2D
 Label
 Control
 CollisionShape2D
@@ -7,7 +10,6 @@ GPUParticles2D
 CPUParticles2D
 Timer
 TileMap
-Node2D
 PanelContainer
 PopupPanel
 MarginContainer

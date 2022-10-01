@@ -34,6 +34,7 @@ script = ExtResource("2_d2ipd")
 [node name="GpuParticles2d" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_o6d28")
 position = Vector2(0, 4.5)
+emitting = false
 amount = 5
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_r4qke")

@@ -1,11 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwnulqnguq66y"]
+[gd_scene load_steps=6 format=3 uid="uid://cwnulqnguq66y"]
 
 [ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="1_arojm"]
+[ext_resource type="Script" path="res://cow.gd" id="1_ycj3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dchdb"]
 size = Vector2(27, 25)
 
+[sub_resource type="Animation" id="Animation_kegi6"]
+resource_name = "Abducted"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533, -0.174533, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crhvl"]
+_data = {
+"Abducted": SubResource("Animation_kegi6")
+}
+
 [node name="Cow" type="Area2D"]
+script = ExtResource("1_ycj3n")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -1.5)
@@ -13,3 +37,10 @@ shape = SubResource("RectangleShape2D_dchdb")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_arojm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_crhvl")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
