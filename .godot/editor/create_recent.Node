@@ -1,7 +1,14 @@
-Timer
 Label
-PanelContainer
 Control
+CollisionShape2D
+Area2D
+Sprite2D
+GPUParticles2D
+CPUParticles2D
+Timer
+TileMap
+Node2D
+PanelContainer
 PopupPanel
 MarginContainer
 Panel

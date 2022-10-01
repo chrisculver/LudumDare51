@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwnulqnguq66y"]
+
+[ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="1_arojm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dchdb"]
+size = Vector2(27, 25)
+
+[node name="Cow" type="Area2D"]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_dchdb")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_arojm")

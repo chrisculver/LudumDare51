@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1ocbhsvcgll4"]
+
+[ext_resource type="Texture2D" uid="uid://cfrort1wmt7d8" path="res://Assets/spaceship.png" id="1_fbjcm"]
+[ext_resource type="Script" path="res://player.gd" id="2_d2ipd"]
+[ext_resource type="Texture2D" uid="uid://cbohp6nfxb81j" path="res://Assets/ring.png" id="3_dsb31"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o6d28"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r4qke"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+color = Color(0.686275, 0.188235, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7lv"]
+size = Vector2(20, 17.1622)
+
+[node name="Player" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_fbjcm")
+script = ExtResource("2_d2ipd")
+
+[node name="GpuParticles2d" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_o6d28")
+position = Vector2(0, 4.5)
+amount = 5
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_r4qke")
+texture = ExtResource("3_dsb31")
+
+[node name="BeamArea" type="Area2D" parent="."]
+scale = Vector2(1, 7.32)
+monitoring = false
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="BeamArea"]
+position = Vector2(2.98023e-08, 4.54235)
+scale = Vector2(1, 0.505464)
+shape = SubResource("RectangleShape2D_tc7lv")
+
+[connection signal="area_entered" from="BeamArea" to="." method="_on_beam_area_area_entered"]
