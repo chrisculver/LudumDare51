@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
-offset_right = 138.0
+offset_right = 277.0
 offset_bottom = 40.0
 theme_override_constants/separation = 25
 
@@ -48,5 +48,12 @@ offset_right = 138.0
 offset_bottom = 40.0
 text = "SCALE"
 
+[node name="RemoveDirt" type="Button" parent="PanelContainer/HBoxContainer"]
+offset_left = 163.0
+offset_right = 277.0
+offset_bottom = 40.0
+text = "REMOVE DIRT"
+
 [connection signal="pressed" from="PanelContainer/HBoxContainer/UpgradeSpeed" to="." method="_on_upgrade_speed_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/UpgradeScale" to="." method="_on_upgrade_scale_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/RemoveDirt" to="." method="_on_remove_dirt_pressed"]

@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var threshold: int = 150
-@export var step: int = 4
+@export var step: float = 1
 @onready var viewport_size = get_viewport().size
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

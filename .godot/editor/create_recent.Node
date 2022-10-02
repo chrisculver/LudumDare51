@@ -1,5 +1,6 @@
-MeshInstance2D
 Button
+Timer
+MeshInstance2D
 HBoxContainer
 PanelContainer
 Control
@@ -15,7 +16,6 @@ Area2D
 Sprite2D
 GPUParticles2D
 CPUParticles2D
-Timer
 TileMap
 PopupPanel
 MarginContainer

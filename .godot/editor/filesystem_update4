@@ -11,3 +11,5 @@ res://player.gd
 res://TileMap.gd
 res://UI/upgrade_menu.tscn
 res://UI/upgrade_menu.gd
+res://UI/ui.gd
+res://camera_2d.gd
