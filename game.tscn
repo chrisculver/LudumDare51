@@ -34,6 +34,7 @@ visible = false
 [node name="UI" parent="UILayer" instance=ExtResource("3_q5cl8")]
 
 [node name="UpgradeMenu" parent="UILayer" instance=ExtResource("4_klax7")]
+unique_name_in_owner = true
 visible = false
 
 [node name="RestartMenu" parent="UILayer" instance=ExtResource("5_3se7r")]
@@ -50,17 +51,35 @@ offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/UpgradeUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_right = 133.0
+offset_bottom = 90.0
+grow_horizontal = 2
 theme_override_constants/margin_top = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UpgradeUI/MarginContainer"]
 custom_minimum_size = Vector2i(200, 0)
 layout_mode = 2
 offset_top = 20.0
-offset_right = 200.0
-offset_bottom = 40.0
+offset_right = 266.0
+offset_bottom = 90.0
+
+[node name="StatusLabel" type="Label" parent="UILayer/UpgradeUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 266.0
+offset_bottom = 70.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Beam is on!"
+horizontal_alignment = 1
 
 [node name="UpgradeSpeedProgress" type="ProgressBar" parent="UILayer/UpgradeUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -159,6 +178,7 @@ grow_vertical = 2
 text = "Removing debris..."
 
 [node name="WinMenu" type="Control" parent="UILayer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -173,11 +193,47 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UILayer/WinMenu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/WinMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.5
+offset_top = -77.0
+offset_right = 220.5
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UILayer/WinMenu/VBoxContainer"]
+layout_mode = 2
+offset_right = 441.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
 text = "YOU WIN!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UILayer/WinMenu/VBoxContainer"]
+layout_mode = 2
+offset_top = 76.0
+offset_right = 441.0
+offset_bottom = 154.0
+text = "Your ship is now large enough to abduct the entire Earth."
+horizontal_alignment = 1
+
+[node name="RestartWinMenu" type="Button" parent="UILayer/WinMenu/VBoxContainer"]
+layout_mode = 2
+offset_top = 158.0
+offset_right = 441.0
+offset_bottom = 189.0
+text = "RESTART"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_etf0v")
@@ -208,19 +264,19 @@ wait_time = 10.0
 autostart = true
 
 [node name="GetDirtTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 2.5
 autostart = true
 
 [node name="UpgradeSizeTimer" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 8.0
 one_shot = true
 
 [node name="UpgradeSpeedTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 
 [node name="RemoveDirtTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="UpgradeCapacityTimer" type="Timer" parent="."]
@@ -228,9 +284,10 @@ wait_time = 15.0
 one_shot = true
 
 [connection signal="remove_debris" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_remove_debris"]
+[connection signal="upgrade_capacity" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_capacity"]
 [connection signal="upgrade_size" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_size"]
 [connection signal="upgrade_speed" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_speed"]
-[connection signal="upgrade_storage" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_storage"]
+[connection signal="pressed" from="UILayer/WinMenu/VBoxContainer/RestartWinMenu" to="." method="_on_restart_win_menu_pressed"]
 [connection signal="spawn_mib" from="TileMap" to="." method="_on_tile_map_spawn_mib"]
 [connection signal="spawn_object" from="TileMap" to="." method="_on_tile_map_spawn_object"]
 [connection signal="abducting_area" from="Player" to="." method="_on_player_abducting_area"]

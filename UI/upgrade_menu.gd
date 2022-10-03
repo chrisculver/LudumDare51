@@ -2,7 +2,7 @@ extends Control
 
 signal upgrade_size
 signal upgrade_speed
-signal upgrade_storage
+signal upgrade_capacity
 signal remove_debris
 
 func enable_button(name):

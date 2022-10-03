@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://56sqnrui6fqa"]
+
+[ext_resource type="Script" path="res://rocks.gd" id="1_8a0l6"]
+[ext_resource type="Texture2D" uid="uid://blsh3lkqx8hy5" path="res://Assets/rocks.png" id="2_c6aim"]
+[ext_resource type="AudioStream" uid="uid://fjkv2cqp0eox" path="res://Assets/moo.wav" id="3_3srmg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dchdb"]
+size = Vector2(27, 25)
+
+[sub_resource type="Animation" id="Animation_kegi6"]
+resource_name = "Abducted"
+length = 1.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533, -0.174533, 0.174533, 0.0]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_anb2r"]
+length = 0.001
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_3srmg")
+}],
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crhvl"]
+_data = {
+"Abducted": SubResource("Animation_kegi6"),
+"RESET": SubResource("Animation_anb2r")
+}
+
+[node name="Rocks" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+monitoring = false
+script = ExtResource("1_8a0l6")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_dchdb")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_c6aim")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_crhvl")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

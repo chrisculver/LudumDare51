@@ -1,9 +1,9 @@
 extends TileMap
 
-@export var objectCut = 0.25 # [0.1 -> 0.2 people] # [0.2->0.3 minerals]
-@export var objectProb = 0.04
-@export var mibProb = 0.01
-@export var chunkSize: int = 8
+@export var objectCut = 0.3 # [0.1 -> 0.2 people] # [0.2->0.3 minerals]
+@export var objectProb = 0.05
+@export var mibProb = 0.02
+@export var chunkSize: int = 128
 
 @onready var noise = FastNoiseLite.new()
 @onready var rng = RandomNumberGenerator.new()

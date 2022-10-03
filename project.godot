@@ -18,10 +18,16 @@ _global_script_classes=[{
 "class": &"Mib",
 "language": &"GDScript",
 "path": "res://mib.gd"
+}, {
+"base": "Area2D",
+"class": &"Rocks",
+"language": &"GDScript",
+"path": "res://rocks.gd"
 }]
 _global_script_class_icons={
 "Cow": "",
-"Mib": ""
+"Mib": "",
+"Rocks": ""
 }
 
 [application]

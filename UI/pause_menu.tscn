@@ -51,6 +51,7 @@ offset_bottom = 31.0
 text = "Resume"
 
 [node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 offset_top = 35.0
 offset_right = 70.0
 offset_bottom = 66.0

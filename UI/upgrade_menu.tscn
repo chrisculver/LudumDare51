@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://gnmcx4u0nu0q"]
+[gd_scene load_steps=6 format=3 uid="uid://gnmcx4u0nu0q"]
 
 [ext_resource type="Script" path="res://UI/upgrade_menu.gd" id="1_hmtce"]
 [ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="2_ve5o3"]
 [ext_resource type="Texture2D" uid="uid://bxmf27f3a6wkc" path="res://Assets/mib.png" id="3_cfvi2"]
-[ext_resource type="Texture2D" uid="uid://q26lo2j7nvpf" path="res://icon.svg" id="4_mn213"]
+[ext_resource type="Texture2D" uid="uid://blsh3lkqx8hy5" path="res://Assets/rocks.png" id="4_xmc8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ky04p"]
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
 
 [node name="UpgradeMenu" type="Control"]
 layout_mode = 3
@@ -34,6 +37,7 @@ offset_right = 213.0
 offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ky04p")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 offset_right = 426.0
@@ -128,7 +132,7 @@ offset_bottom = 169.0
 custom_minimum_size = Vector2i(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("4_mn213")
+texture = ExtResource("4_xmc8l")
 ignore_texture_size = true
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer3"]
@@ -202,7 +206,7 @@ offset_bottom = 169.0
 custom_minimum_size = Vector2i(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("4_mn213")
+texture = ExtResource("4_xmc8l")
 ignore_texture_size = true
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer3"]
@@ -277,7 +281,7 @@ offset_bottom = 169.0
 custom_minimum_size = Vector2i(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("4_mn213")
+texture = ExtResource("4_xmc8l")
 ignore_texture_size = true
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer3"]
@@ -315,7 +319,7 @@ offset_bottom = 97.0
 custom_minimum_size = Vector2i(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("4_mn213")
+texture = ExtResource("4_xmc8l")
 ignore_texture_size = true
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay/HBoxContainer3"]

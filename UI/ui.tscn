@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_qudr4"]
 [ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="2_4yviy"]
 [ext_resource type="Texture2D" uid="uid://bxmf27f3a6wkc" path="res://Assets/mib.png" id="3_1m1xs"]
-[ext_resource type="Texture2D" uid="uid://q26lo2j7nvpf" path="res://icon.svg" id="3_8nsli"]
+[ext_resource type="Texture2D" uid="uid://blsh3lkqx8hy5" path="res://Assets/rocks.png" id="4_fgsxx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m6mu"]
 
@@ -38,15 +38,26 @@ theme_override_constants/margin_bottom = 25
 offset_left = 25.0
 offset_top = 25.0
 offset_right = 213.0
-offset_bottom = 82.0
+offset_bottom = 137.0
 grow_horizontal = 0
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2i(100, 20)
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 offset_right = 188.0
-offset_bottom = 20.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 30
+text = "Ship Storage"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2i(100, 25)
+offset_top = 50.0
+offset_right = 188.0
+offset_bottom = 75.0
 tooltip_text = "Ship storage capacity"
 theme_override_constants/outline_size = 10
 theme_override_styles/background = SubResource("StyleBoxFlat_5m6mu")
@@ -54,10 +65,18 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_lakjb")
 value = 50.0
 show_percentage = false
 
-[node name="HBoxContainer0" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 25.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ProgressBar"]
 offset_right = 188.0
-offset_bottom = 57.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Capacity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer0" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 80.0
+offset_right = 188.0
+offset_bottom = 112.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer0"]
 offset_right = 60.0
@@ -110,7 +129,7 @@ alignment = 1
 custom_minimum_size = Vector2i(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("3_8nsli")
+texture = ExtResource("4_fgsxx")
 ignore_texture_size = true
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer3"]

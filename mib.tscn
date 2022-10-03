@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b61mmu2d4dgbg"]
+[gd_scene load_steps=9 format=3 uid="uid://b61mmu2d4dgbg"]
 
 [ext_resource type="Script" path="res://mib.gd" id="1_o8qax"]
 [ext_resource type="Texture2D" uid="uid://bxmf27f3a6wkc" path="res://Assets/mib.png" id="2_fs6g1"]
 [ext_resource type="AudioStream" uid="uid://fjkv2cqp0eox" path="res://Assets/moo.wav" id="3_3srmg"]
+[ext_resource type="AudioStream" uid="uid://cghyw4x53nv3p" path="res://Assets/scream.wav" id="3_u6qjx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dchdb"]
 size = Vector2(27, 25)
@@ -33,7 +34,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("3_3srmg")
+"stream": ExtResource("3_u6qjx")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -91,5 +92,6 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_u6qjx")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
