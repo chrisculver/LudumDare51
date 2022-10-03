@@ -1,27 +1,49 @@
 extends Control
 
-signal upgrade_scale
+signal upgrade_size
 signal upgrade_speed
 signal upgrade_storage
-signal remove_dirt
+signal remove_debris
 
 func enable_button(name):
 	get_node(name).disabled=false
 
-func _on_upgrade_scale_pressed():
-	emit_signal("upgrade_scale")
-	get_node("%UpgradeScale").disabled=true
+
+
+
+func set_next_speed_upgrade(cows, mibs, dirts):
+	%UpgradeSpeedDisplay/HBoxContainer/Label.text = "x"+str(cows)
+	%UpgradeSpeedDisplay/HBoxContainer2/Label.text = "x"+str(mibs)
+	%UpgradeSpeedDisplay/HBoxContainer3/Label.text = "x"+str(dirts)
+
+func set_next_size_upgrade(cows, mibs, dirts):
+	%UpgradeSizeDisplay/HBoxContainer/Label.text = "x"+str(cows)
+	%UpgradeSizeDisplay/HBoxContainer2/Label.text = "x"+str(mibs)
+	%UpgradeSizeDisplay/HBoxContainer3/Label.text = "x"+str(dirts)
+
+func set_next_capacity_upgrade(cows, mibs, dirts):
+	%UpgradeCapacityDisplay/HBoxContainer/Label.text = "x"+str(cows)
+	%UpgradeCapacityDisplay/HBoxContainer2/Label.text = "x"+str(mibs)
+	%UpgradeCapacityDisplay/HBoxContainer3/Label.text = "x"+str(dirts)
+
+
+
 
 func _on_upgrade_speed_pressed():
-	emit_signal("upgrade_speed")
 	get_node("%UpgradeSpeed").disabled=true
+	emit_signal("upgrade_speed")
 
 
-func _on_remove_dirt_pressed():
-	emit_signal("remove_dirt")
-	get_node("%RemoveDirt").disabled=true
+func _on_remove_debris_pressed():
+	get_node("%RemoveDebris").disabled=true
+	emit_signal("remove_debris")
 
 
-func _on_upgrade_storage_pressed():
-	emit_signal("upgrade_storage")
-	get_node("%UpgradeStorage").disabled=true
+func _on_upgrade_size_pressed():
+	get_node("%UpgradeSize").disabled=true
+	emit_signal("upgrade_size")
+
+
+func _on_upgrade_capacity_pressed():
+	get_node("%UpgradeCapacity").disabled=true
+	emit_signal("upgrade_capacity")

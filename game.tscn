@@ -158,6 +158,27 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Removing debris..."
 
+[node name="WinMenu" type="Control" parent="UILayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UILayer/WinMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "YOU WIN!"
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_etf0v")
 format = 2
@@ -206,8 +227,8 @@ one_shot = true
 wait_time = 15.0
 one_shot = true
 
-[connection signal="remove_dirt" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_remove_dirt"]
-[connection signal="upgrade_scale" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_scale"]
+[connection signal="remove_debris" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_remove_debris"]
+[connection signal="upgrade_size" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_size"]
 [connection signal="upgrade_speed" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_speed"]
 [connection signal="upgrade_storage" from="UILayer/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_storage"]
 [connection signal="spawn_mib" from="TileMap" to="." method="_on_tile_map_spawn_mib"]

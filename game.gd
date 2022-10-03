@@ -34,17 +34,35 @@ var currentCapacity: int = 0:
 			$Player.death()
 		
 
-var maxCapacity: int = 20:
+var maxCapacity: int = 100:
 	get:
 		return maxCapacity
 	set(newMax):
 		maxCapacity=newMax
 		$UILayer/UI.set_max_capacity(maxCapacity)
-		if maxCapacity > 100:
-			win_game()
+
 
 var cowScene = preload("res://cow.tscn")
 var mibScene = preload("res://mib.tscn")
+
+var lastUpgradeSize = 0
+var lastUpgradeSpeed = 0
+var lastUpgradeCapacity = 0
+var UpgradeSizeCosts = [
+		{'cost': {'cows': 0, 'mibs': 1, 'dirt': 0}, 'multiplier': 0.1}, 
+		{'cost': {'cows': 1, 'mibs': 1, 'dirt': 0}, 'multiplier': 0.1}
+	]
+
+var UpgradeSpeedCosts = [
+		{'cost': {'cows': 1, 'mibs': 0, 'dirt': 0}, 'multiplier': 0.2}, 
+		{'cost': {'cows': 2, 'mibs': 0, 'dirt': 0}, 'multiplier': 0.2}
+]
+
+var UpgradeCapacityCosts = [
+	{'cost': {'cows': 1, 'mibs': 1, 'dirt': 1}, 'multiplier': 1.5}, 
+	{'cost': {'cows': 2, 'mibs': 2, 'dirt': 2}, 'multiplier': 2.0}
+]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,6 +77,14 @@ func _ready():
 
 	debugOverlay.add_stat("playerPos: ", $Player, "position", false)
 
+	$UILayer/UpgradeMenu.set_next_speed_upgrade(UpgradeSpeedCosts[0]['cost']['cows'], 
+		UpgradeSpeedCosts[0]['cost']['mibs'], UpgradeSpeedCosts[0]['cost']['dirt'])
+		
+	$UILayer/UpgradeMenu.set_next_size_upgrade(UpgradeSizeCosts[0]['cost']['cows'], 
+		UpgradeSizeCosts[0]['cost']['mibs'], UpgradeSizeCosts[0]['cost']['dirt'])
+
+	$UILayer/UpgradeMenu.set_next_capacity_upgrade(UpgradeCapacityCosts[0]['cost']['cows'], 
+		UpgradeCapacityCosts[0]['cost']['mibs'], UpgradeCapacityCosts[0]['cost']['dirt'])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -117,7 +143,6 @@ func _on_tile_map_spawn_object(pos):
 func _on_tile_map_spawn_mib(pos):
 	var mib = mibScene.instantiate()
 	mib.position = pos
-	print(mib, "   ", pos)
 	add_child(mib)
 
 func _on_get_dirt_timer_timeout():
@@ -126,23 +151,68 @@ func _on_get_dirt_timer_timeout():
 	$GetDirtTimer.start()
 
 
-func _on_upgrade_menu_upgrade_scale():
-	if not get_node("%UpgradeSizeProgress").visible:
-		$UpgradeSizeTimer.start()
-		get_node("%UpgradeSizeProgress").visible = true
+func _on_upgrade_menu_upgrade_size():
+	var upgrade = {'cost': {'cows': 10, 'mibs': 10, 'dirt': 10}}
+	if lastUpgradeSize<len(UpgradeSizeCosts):
+		upgrade = UpgradeSizeCosts[lastUpgradeSize]
+
+
+	if (cows>=upgrade['cost']['cows']) and (mibs>=upgrade['cost']['mibs']) and (dirtAmount>=upgrade['cost']['dirt']):
+		cows -= upgrade['cost']['cows']
+		mibs -= upgrade['cost']['mibs']
+		dirtAmount -= upgrade['cost']['dirt']
+		
+		if not get_node("%UpgradeSizeProgress").visible:
+			$UpgradeSizeTimer.start()
+			get_node("%UpgradeSizeProgress").visible = true
+
+	else:
+		$UILayer/UpgradeMenu.enable_button("%UpgradeScale")
+
+
 
 func _on_upgrade_menu_upgrade_storage():
-	if not get_node("%UpgradeCapacityProgress").visible:
-		$UpgradeCapacityTimer.start()
-		get_node("%UpgradeCapacityProgress").visible = true
+	var upgrade = {'cost': {'cows': 10, 'mibs': 10, 'dirt': 10}}
+	if lastUpgradeCapacity<UpgradeCapacityCosts:
+		upgrade = UpgradeCapacityCosts[lastUpgradeCapacity]
+		
+	if lastUpgradeCapacity == len(UpgradeCapacityCosts):
+		$WinMenu.visibility = true
+
+	if (cows>=upgrade['cost']['cows']) and (mibs>=upgrade['cost']['mibs']) and (dirtAmount>=upgrade['cost']['dirt']):
+		cows -= upgrade['cost']['cows']
+		mibs -= upgrade['cost']['mibs']
+		dirtAmount -= upgrade['cost']['dirt']
+	
+		if not get_node("%UpgradeCapacityProgress").visible:
+			$UpgradeCapacityTimer.start()
+			get_node("%UpgradeCapacityProgress").visible = true
+	
+	else:
+		$UILayer/UpgradeMenu.enable_button("%UpgradeStorage")
+
+
+
 
 func _on_upgrade_menu_upgrade_speed():
-	if not get_node("%UpgradeSpeedProgress").visible:
-		$UpgradeSpeedTimer.start()
-		get_node("%UpgradeSpeedProgress").visible = true
+	var upgrade = {'cost': {'cows': 10, 'mibs': 10, 'dirt': 10}}
+	if lastUpgradeSpeed<len(UpgradeSpeedCosts):
+		upgrade = UpgradeSpeedCosts[lastUpgradeSpeed]
+
+	if (cows>=upgrade['cost']['cows']) and (mibs>=upgrade['cost']['mibs']) and (dirtAmount>=upgrade['cost']['dirt']):
+		cows -= upgrade['cost']['cows']
+		mibs -= upgrade['cost']['mibs']
+		dirtAmount -= upgrade['cost']['dirt']
+	
+		if not get_node("%UpgradeSpeedProgress").visible:
+			$UpgradeSpeedTimer.start()
+			get_node("%UpgradeSpeedProgress").visible = true
+	
+	else:
+		$UILayer/UpgradeMenu.enable_button("%UpgradeSpeed")
 
 
-func _on_upgrade_menu_remove_dirt():
+func _on_upgrade_menu_remove_debris():
 	if not get_node("%RemoveDirtProgress").visible:
 		$RemoveDirtTimer.start()
 		get_node("%RemoveDirtProgress").visible = true
@@ -150,22 +220,40 @@ func _on_upgrade_menu_remove_dirt():
 
 
 func _on_upgrade_speed_timer_timeout():
-	$Player.SPEED += $Player.SPEED*0.1
-	$Camera2d.step += $Camera2d.step*0.1
+	var upgrade = UpgradeSpeedCosts[lastUpgradeSpeed]
+	$Player.SPEED += $Player.SPEED*upgrade['multiplier']
+	$Camera2d.step += $Camera2d.step*upgrade['multiplier']
 	$UILayer/UpgradeMenu.enable_button("%UpgradeSpeed")
 	get_node("%UpgradeSpeedProgress").visible = false
 	get_node("%UpgradeSpeedProgress").value = 0
+	
+	lastUpgradeSpeed+=1
+	if lastUpgradeSpeed < len(UpgradeSpeedCosts):
+		$UILayer/UpgradeMenu.set_next_speed_upgrade(UpgradeSpeedCosts[lastUpgradeSpeed]['cost']['cows'], 
+			UpgradeSpeedCosts[lastUpgradeSpeed]['cost']['mibs'], UpgradeSpeedCosts[lastUpgradeSpeed]['cost']['dirt'])
+	else:
+		$UILayer/UpgradeMenu.set_next_speed_upgrade(10,10,10)
+	
 
 func _on_upgrade_size_timer_timeout():
-	$Player.SIZE += $Player.SIZE*0.1
-	$Camera2d.zoom -= $Camera2d.zoom*0.2
-	$UILayer/UpgradeMenu.enable_button("%UpgradeScale")
+	var upgrade = UpgradeCapacityCosts[lastUpgradeSize]
+	
+	$Player.SIZE += $Player.SIZE*upgrade['multiplier']
+	$Camera2d.zoom -= $Camera2d.zoom*2*upgrade['multiplier']
+	$UILayer/UpgradeMenu.enable_button("%UpgradeSize")
 	get_node("%UpgradeSizeProgress").visible = false
+	
+	lastUpgradeSize+=1
+	if lastUpgradeSize < len(UpgradeSizeCosts):
+		$UILayer/UpgradeMenu.set_next_size_upgrade(UpgradeSizeCosts[lastUpgradeSize]['cost']['cows'], 
+			UpgradeSizeCosts[lastUpgradeSize]['cost']['mibs'], UpgradeSizeCosts[lastUpgradeSize]['cost']['dirt'])
+	else:
+		$UILayer/UpgradeMenu.set_next_size_upgrade(10,10,10)
 
 func _on_remove_dirt_timer_timeout():
 	dirtAmount-=5
 	currentCapacity-=5
-	$UILayer/UpgradeMenu.enable_button("%RemoveDirt")
+	$UILayer/UpgradeMenu.enable_button("%RemoveDebris")
 	get_node("%RemoveDirtProgress").visible = false
 
 
@@ -175,9 +263,23 @@ func _on_player_end_game():
 
 
 func _on_upgrade_capacity_timer_timeout():
-	maxCapacity*=2
+	var upgrade = UpgradeCapacityCosts[lastUpgradeCapacity]
+
+	maxCapacity*=UpgradeCapacityCosts[lastUpgradeCapacity]['multiplier']
+	lastUpgradeCapacity+=1
+	
+	if lastUpgradeCapacity < len(UpgradeCapacityCosts):
+		$UILayer/UpgradeMenu.set_next_capacity_upgrade(UpgradeCapacityCosts[lastUpgradeCapacity]['cost']['cows'], 
+			UpgradeCapacityCosts[lastUpgradeCapacity]['cost']['mibs'], UpgradeCapacityCosts[lastUpgradeCapacity]['cost']['dirt'])
+	else:
+		$UILayer/UpgradeMenu.set_next_capacity_upgrade(10,10,10)
+
+
 	$UILayer/UpgradeMenu.enable_button("%UpgradeStorage")
 	get_node("%UpgradeCapacityProgress").visible = false
+
+
+
 
 
 func win_game():
@@ -189,4 +291,3 @@ func win_game():
 
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()
-

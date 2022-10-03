@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://gnmcx4u0nu0q"]
+[gd_scene load_steps=5 format=3 uid="uid://gnmcx4u0nu0q"]
 
 [ext_resource type="Script" path="res://UI/upgrade_menu.gd" id="1_hmtce"]
-[ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="2_oiqvv"]
-[ext_resource type="Texture2D" uid="uid://bxmf27f3a6wkc" path="res://Assets/mib.png" id="3_rg2jk"]
+[ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="2_ve5o3"]
+[ext_resource type="Texture2D" uid="uid://bxmf27f3a6wkc" path="res://Assets/mib.png" id="3_cfvi2"]
+[ext_resource type="Texture2D" uid="uid://q26lo2j7nvpf" path="res://icon.svg" id="4_mn213"]
 
 [node name="UpgradeMenu" type="Control"]
 layout_mode = 3
@@ -27,81 +28,304 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -213.0
+offset_top = -43.0
+offset_right = 213.0
+offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
-offset_right = 382.0
-offset_bottom = 67.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+offset_right = 426.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-offset_right = 382.0
-offset_bottom = 31.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 401.0
+offset_bottom = 245.0
 theme_override_constants/separation = 25
 
-[node name="UpgradeSpeed" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+offset_left = 151.0
+offset_right = 225.0
+offset_bottom = 26.0
+size_flags_horizontal = 4
+text = "Upgrades"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+offset_top = 51.0
+offset_right = 376.0
+offset_bottom = 220.0
+theme_override_constants/separation = 25
+
+[node name="UpgradeSpeedDisplay" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_right = 57.0
+offset_bottom = 169.0
+
+[node name="UpgradeSpeed" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay"]
 unique_name_in_owner = true
 offset_right = 57.0
 offset_bottom = 31.0
 text = "SPEED"
 
-[node name="UpgradeScale" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-offset_left = 82.0
-offset_right = 138.0
-offset_bottom = 31.0
-text = "SCALE"
-
-[node name="UpgradeStorage" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-offset_left = 163.0
-offset_right = 243.0
-offset_bottom = 31.0
-text = "STORAGE"
-
-[node name="RemoveDirt" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-offset_left = 268.0
-offset_right = 382.0
-offset_bottom = 31.0
-text = "REMOVE DIRT"
-
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay"]
 offset_top = 35.0
-offset_right = 382.0
-offset_bottom = 67.0
-columns = 10
+offset_right = 57.0
+offset_bottom = 61.0
+text = "COST"
+horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay"]
+offset_top = 65.0
+offset_right = 57.0
+offset_bottom = 97.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer"]
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("2_oiqvv")
+texture = ExtResource("2_ve5o3")
 
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer"]
 offset_left = 36.0
-offset_right = 68.0
-offset_bottom = 32.0
-texture = ExtResource("2_oiqvv")
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
 
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 72.0
-offset_right = 104.0
-offset_bottom = 32.0
-texture = ExtResource("2_oiqvv")
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay"]
+offset_top = 101.0
+offset_right = 57.0
+offset_bottom = 133.0
 
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer2"]
 custom_minimum_size = Vector2i(32, 32)
-offset_left = 108.0
-offset_right = 140.0
+offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("3_rg2jk")
+texture = ExtResource("3_cfvi2")
 ignore_texture_size = true
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/UpgradeSpeed" to="." method="_on_upgrade_speed_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/UpgradeScale" to="." method="_on_upgrade_scale_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/UpgradeStorage" to="." method="_on_upgrade_storage_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/RemoveDirt" to="." method="_on_remove_dirt_pressed"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer2"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay"]
+offset_top = 137.0
+offset_right = 57.0
+offset_bottom = 169.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer3"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("4_mn213")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/HBoxContainer3"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="UpgradeSizeDisplay" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 82.0
+offset_right = 136.0
+offset_bottom = 169.0
+
+[node name="UpgradeSize" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay"]
+unique_name_in_owner = true
+offset_right = 54.0
+offset_bottom = 31.0
+text = "SIZE"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay"]
+offset_top = 35.0
+offset_right = 54.0
+offset_bottom = 61.0
+text = "COST"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay"]
+offset_top = 65.0
+offset_right = 54.0
+offset_bottom = 97.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer"]
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_ve5o3")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay"]
+offset_top = 101.0
+offset_right = 54.0
+offset_bottom = 133.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer2"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_cfvi2")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer2"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay"]
+offset_top = 137.0
+offset_right = 54.0
+offset_bottom = 169.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer3"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("4_mn213")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/HBoxContainer3"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="UpgradeCapacityDisplay" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 161.0
+offset_right = 244.0
+offset_bottom = 169.0
+
+[node name="UpgradeCapacity" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay"]
+unique_name_in_owner = true
+offset_right = 83.0
+offset_bottom = 31.0
+text = "CAPACITY
+"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay"]
+offset_top = 35.0
+offset_right = 83.0
+offset_bottom = 61.0
+text = "COST"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay"]
+offset_top = 65.0
+offset_right = 83.0
+offset_bottom = 97.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer"]
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_ve5o3")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay"]
+offset_top = 101.0
+offset_right = 83.0
+offset_bottom = 133.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer2"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_cfvi2")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer2"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay"]
+offset_top = 137.0
+offset_right = 83.0
+offset_bottom = 169.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer3"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("4_mn213")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/HBoxContainer3"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 29.0
+text = "x0"
+
+[node name="RemoveDirtDisplay" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 269.0
+offset_right = 335.0
+offset_bottom = 169.0
+
+[node name="RemoveDebris" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay"]
+unique_name_in_owner = true
+offset_right = 66.0
+offset_bottom = 31.0
+text = "DUMP"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay"]
+offset_top = 35.0
+offset_right = 66.0
+offset_bottom = 61.0
+text = "REMOVE"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay"]
+offset_top = 65.0
+offset_right = 66.0
+offset_bottom = 97.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay/HBoxContainer3"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("4_mn213")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay/HBoxContainer3"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 51.0
+offset_bottom = 29.0
+text = "-5"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSpeedDisplay/UpgradeSpeed" to="." method="_on_upgrade_speed_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeSizeDisplay/UpgradeSize" to="." method="_on_upgrade_size_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradeCapacityDisplay/UpgradeCapacity" to="." method="_on_upgrade_capacity_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RemoveDirtDisplay/RemoveDebris" to="." method="_on_remove_debris_pressed"]
