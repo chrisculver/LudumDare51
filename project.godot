@@ -8,6 +8,22 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Area2D",
+"class": &"Cow",
+"language": &"GDScript",
+"path": "res://cow.gd"
+}, {
+"base": "Area2D",
+"class": &"Mib",
+"language": &"GDScript",
+"path": "res://mib.gd"
+}]
+_global_script_class_icons={
+"Cow": "",
+"Mib": ""
+}
+
 [application]
 
 config/name="LudumDare51"

@@ -1,5 +1,5 @@
 extends Area2D
-class_name Cow
+class_name Mib
 
 @onready var AnimPlayer = $AnimationPlayer
 

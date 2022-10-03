@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6rnmh4388kyd"]
+[gd_scene load_steps=7 format=3 uid="uid://b6rnmh4388kyd"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_qudr4"]
 [ext_resource type="Texture2D" uid="uid://baqcrgmqgt1wq" path="res://Assets/cow.png" id="2_4yviy"]
+[ext_resource type="Texture2D" uid="uid://bxmf27f3a6wkc" path="res://Assets/mib.png" id="3_1m1xs"]
 [ext_resource type="Texture2D" uid="uid://q26lo2j7nvpf" path="res://icon.svg" id="3_8nsli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m6mu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lakjb"]
+bg_color = Color(0.0235294, 0.678431, 0, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -16,27 +22,54 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_qudr4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -54.0
-offset_bottom = 32.0
+offset_left = -100.0
+offset_bottom = 99.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 213.0
+offset_bottom = 82.0
 grow_horizontal = 0
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2i(100, 20)
+offset_right = 188.0
+offset_bottom = 20.0
+tooltip_text = "Ship storage capacity"
+theme_override_constants/outline_size = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_5m6mu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lakjb")
+value = 50.0
+show_percentage = false
+
+[node name="HBoxContainer0" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 25.0
+offset_right = 188.0
+offset_bottom = 57.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer0"]
 offset_right = 60.0
 offset_bottom = 32.0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer"]
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("2_4yviy")
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer"]
 offset_left = 36.0
 offset_top = 3.0
 offset_right = 60.0
@@ -45,20 +78,42 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "x-1"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-offset_top = 37.0
-offset_right = 60.0
-offset_bottom = 69.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer0"]
+offset_left = 64.0
+offset_right = 124.0
+offset_bottom = 32.0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer2"]
+custom_minimum_size = Vector2i(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_1m1xs")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer2"]
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 60.0
+offset_bottom = 29.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "x-1"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer0"]
+offset_left = 128.0
+offset_right = 188.0
+offset_bottom = 32.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer3"]
 custom_minimum_size = Vector2i(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("3_8nsli")
 ignore_texture_size = true
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer0/HBoxContainer3"]
 offset_left = 36.0
 offset_top = 3.0
 offset_right = 60.0

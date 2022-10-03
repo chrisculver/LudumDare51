@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ocbhsvcgll4"]
+[gd_scene load_steps=11 format=3 uid="uid://d1ocbhsvcgll4"]
 
 [ext_resource type="Texture2D" uid="uid://cfrort1wmt7d8" path="res://Assets/spaceship.png" id="1_fbjcm"]
 [ext_resource type="Script" path="res://player.gd" id="2_d2ipd"]
@@ -34,11 +34,35 @@ material = SubResource("StandardMaterial3D_7cebv")
 radius = 10.0
 height = 10.0
 
-[node name="Player" type="Sprite2D"]
-texture = ExtResource("1_fbjcm")
+[sub_resource type="Animation" id="Animation_7detg"]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 10), Vector2(10, 20), Vector2(0, 60)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4qdx"]
+_data = {
+"Death": SubResource("Animation_7detg")
+}
+
+[node name="Player" type="Node2D"]
 script = ExtResource("2_d2ipd")
 
-[node name="GpuParticles2d" type="GPUParticles2D" parent="."]
+[node name="ShipArt" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("1_fbjcm")
+
+[node name="BeamParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_o6d28")
 position = Vector2(0, 4.5)
 amount = 5
@@ -60,4 +84,11 @@ shape = SubResource("RectangleShape2D_tc7lv")
 position = Vector2(0, 64.5)
 mesh = SubResource("SphereMesh_henp2")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ShipArt")
+libraries = {
+"": SubResource("AnimationLibrary_b4qdx")
+}
+
 [connection signal="area_entered" from="BeamArea" to="." method="_on_beam_area_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
