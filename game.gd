@@ -265,8 +265,8 @@ func _on_upgrade_speed_timer_timeout():
 	get_node("%UpgradeSpeedProgress").visible = false
 	get_node("%UpgradeSpeedProgress").value = 0
 	
-	if $GetDirtTimer.wait_time > 0.1:
-		$GetDirtTimer.wait_time -= 0.15
+	if $GetDirtTimer.wait_time >= 0.2:
+		$GetDirtTimer.wait_time -= 0.1
 	
 	lastUpgradeSpeed+=1
 	if lastUpgradeSpeed < len(UpgradeSpeedCosts):
@@ -282,8 +282,8 @@ func _on_upgrade_size_timer_timeout():
 	$Player.SIZE += $Player.SIZE*upgrade['multiplier']
 	$Player.SPEED += $Player.SPEED*upgrade['multiplier']
 	$Camera2d.step += $Camera2d.step*upgrade['multiplier']
-	if $GetDirtTimer.wait_time > 0.1:
-		$GetDirtTimer.wait_time -= 0.15
+	if $GetDirtTimer.wait_time >= 0.2:
+		$GetDirtTimer.wait_time -= 0.1
 
 	$Camera2d.zoom = $Camera2d.zoom - $Camera2d.zoom*2.5*upgrade['multiplier']
 	$UILayer/UpgradeMenu.enable_button("%UpgradeSize")
